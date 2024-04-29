@@ -21,20 +21,21 @@ var init = function (window) {
         
         // TODO 1 : Declare and initialize our variables
         var circle;
-        var cirlces = [];
+        var circles = [];
 
         // TODO 2 : Create a function that draws a circle 
-        function drawCircle(){
-
-        }
+        
+     function drawCircle(){
+        0 var circle = draw.randomCircleInArea(canvas, true, true, "#999" , 2);
+        physikz.addRandomVelocity(circle, canvas);
+        view.addChild(circle);
+        circle.push(circle);
+    }
 
         // TODO 3 / 7 : Call the drawCircle() function 
-
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
+        for (var i = 0; i < 100; i++){
+            drawCircle()
+        }
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
         ////////////////////////////////////////////////////////////
@@ -53,7 +54,11 @@ var init = function (window) {
 
             // TODO 9 : Iterate over the array
            
-            
+            for (var i = 0; i < circle.length; i++ ){
+             physikz.updatePosition(circle[i])
+             
+             game.checkCirclePosition(circle[i])
+            }
         }
     
         /* 
@@ -70,8 +75,18 @@ var init = function (window) {
             
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
             
-
-
+            //if circle has gone past the top of the screen then place it on the bottom
+            if (circle.y < 0){
+                circle.x = canvas.width
+            }
+            //if circle has gone past the left of the screen then place it on the right
+            if (circle.x < 0){
+                circle.x = canvas.height
+            }
+            //if circle has gone past the bottom of the screen then place it on the top
+            if (circle.y > canvas.height){
+                circle.y = 0
+            }
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
         }
         
